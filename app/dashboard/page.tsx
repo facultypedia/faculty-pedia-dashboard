@@ -1075,7 +1075,7 @@ export default function DashboardPage() {
                       </Button>
                     </Label>
                     <p className="text-xs text-muted-foreground">
-                      JPG, PNG or GIF. Max size 5MB.
+                      JPG, PNG or GIF. Max size 5MB. Avatar should be in 1:1 aspect ratio
                     </p>
                   </div>
                 </div>
@@ -1618,21 +1618,20 @@ export default function DashboardPage() {
                         {introVideoStatus === "processing"
                           ? "Processing"
                           : introVideoStatus === "ready"
-                          ? "Ready"
-                          : introVideoStatus === "error"
-                          ? "Error"
-                          : introEmbedUrl
-                          ? "Ready"
-                          : "Not available"}
+                            ? "Ready"
+                            : introVideoStatus === "error"
+                              ? "Error"
+                              : introEmbedUrl
+                                ? "Ready"
+                                : "Not available"}
                       </span>
                     </p>
                     <div className="aspect-video rounded-lg overflow-hidden bg-muted flex items-center justify-center">
                       {introEmbedUrl ? (
                         <iframe
                           key={introEmbedUrl}
-                          src={`${introEmbedUrl}${
-                            introEmbedUrl.includes("?") ? "&" : "?"
-                          }title=0&byline=0&portrait=0`}
+                          src={`${introEmbedUrl}${introEmbedUrl.includes("?") ? "&" : "?"
+                            }title=0&byline=0&portrait=0`}
                           width="100%"
                           height="100%"
                           allow="autoplay; fullscreen; picture-in-picture"
