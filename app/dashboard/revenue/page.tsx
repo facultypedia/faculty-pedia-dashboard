@@ -56,12 +56,13 @@ export default function RevenuePage() {
   }, [toast]);
 
   const totals = useMemo(() => {
-    const totalRevenue = payments.reduce((sum, p) => sum + (p.amount || 0), 0);
+    const successfulPayments = payments.filter((p) => p.status === "succeeded");
+    const totalRevenue = successfulPayments.reduce((sum, p) => sum + (p.amount || 0), 0);
     const totalPayouts = payouts.reduce((sum, p) => sum + (p.amount || 0), 0);
     return {
       totalRevenue,
       totalPayouts,
-      transactions: payments.length,
+      transactions: successfulPayments.length,
     };
   }, [payments, payouts]);
 

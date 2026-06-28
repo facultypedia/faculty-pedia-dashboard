@@ -475,14 +475,8 @@ export const updateVideo = async (videoId, options = {}) => {
 
 export const updateCourse = async (courseId, courseData) => {
   try {
-    const isFormData =
-      typeof FormData !== "undefined" && courseData instanceof FormData;
-
     const config = {
-      headers: {
-        ...getAuthHeaders(),
-        ...(isFormData ? { "Content-Type": "multipart/form-data" } : {}),
-      },
+      headers: getAuthHeaders(),
     };
 
     const response = await API_CLIENT.put(
@@ -661,10 +655,7 @@ export const createStudyMaterialEntry = async ({
 
   try {
     const response = await API_CLIENT.post("/api/study-materials", formData, {
-      headers: {
-        ...getAuthHeaders(),
-        "Content-Type": "multipart/form-data",
-      },
+      headers: getAuthHeaders(),
       timeout: 180000,
     });
     return response.data;
@@ -763,10 +754,7 @@ export const updateStudyMaterialEntry = async (
       `/api/study-materials/${studyMaterialId}`,
       formData,
       {
-        headers: {
-          ...getAuthHeaders(),
-          "Content-Type": "multipart/form-data",
-        },
+        headers: getAuthHeaders(),
         timeout: 180000,
       }
     );
@@ -879,14 +867,8 @@ export const getEducatorTestSeries = async (educatorId, params = {}) => {
 
 export const createTestSeries = async (testSeriesData) => {
   try {
-    const isFormData =
-      typeof FormData !== "undefined" && testSeriesData instanceof FormData;
-
     const config = {
-      headers: {
-        ...getAuthHeaders(),
-        ...(isFormData && { "Content-Type": "multipart/form-data" }),
-      },
+      headers: getAuthHeaders(),
     };
 
     const response = await API_CLIENT.post(
@@ -903,17 +885,11 @@ export const createTestSeries = async (testSeriesData) => {
 
 export const updateTestSeries = async (testSeriesId, testSeriesData) => {
   try {
-    const isFormData =
-      typeof FormData !== "undefined" && testSeriesData instanceof FormData;
-
     const response = await API_CLIENT.put(
       `/api/test-series/${testSeriesId}`,
       testSeriesData,
       {
-        headers: {
-          ...getAuthHeaders(),
-          ...(isFormData && { "Content-Type": "multipart/form-data" }),
-        },
+        headers: getAuthHeaders(),
       }
     );
     return response.data;
@@ -939,10 +915,7 @@ export const updateTestSeriesImage = async (testSeriesId, imageFile) => {
       `/api/test-series/${testSeriesId}/image`,
       formData,
       {
-        headers: {
-          ...getAuthHeaders(),
-          "Content-Type": "multipart/form-data",
-        },
+        headers: getAuthHeaders(),
       }
     );
     return response.data;
@@ -1272,10 +1245,7 @@ export const uploadImage = async (imageFile, type = "course") => {
       `/api/upload/image?type=${type}`,
       formData,
       {
-        headers: {
-          ...getAuthHeaders(),
-          "Content-Type": "multipart/form-data",
-        },
+        headers: getAuthHeaders(),
       }
     );
     return response.data;
@@ -1291,10 +1261,7 @@ export const uploadPdf = async (pdfFile) => {
     formData.append("file", pdfFile);
 
     const response = await API_CLIENT.post(`/api/upload/pdf`, formData, {
-      headers: {
-        ...getAuthHeaders(),
-        "Content-Type": "multipart/form-data",
-      },
+      headers: getAuthHeaders(),
     });
 
     return response.data;
@@ -1333,11 +1300,7 @@ export const uploadVideoToVimeo = async ({
       "/api/videos/upload-to-vimeo",
       formData,
       {
-        headers: {
-          ...getAuthHeaders(),
-          "Content-Type": "multipart/form-data",
-        },
-        // Add timeout for large video uploads
+        headers: getAuthHeaders(),
         timeout: 600000, // 10 minutes
       }
     );
@@ -1366,10 +1329,7 @@ export const uploadEducatorIntroVideo = async (educatorId, videoFile) => {
     `/api/educators/${educatorId}/intro-video/upload`,
     formData,
     {
-      headers: {
-        ...getAuthHeaders(),
-        "Content-Type": "multipart/form-data",
-      },
+      headers: getAuthHeaders(),
       timeout: 600000, // 10 minutes for large uploads
     }
   );
@@ -1410,10 +1370,7 @@ export const uploadCourseIntroVideo = async (courseId, videoFile) => {
     `/api/courses/${courseId}/intro-video/upload`,
     formData,
     {
-      headers: {
-        ...getAuthHeaders(),
-        "Content-Type": "multipart/form-data",
-      },
+      headers: getAuthHeaders(),
       timeout: 600000,
     }
   );
@@ -1438,10 +1395,7 @@ export const uploadWebinarIntroVideo = async (webinarId, videoFile) => {
     `/api/webinars/${webinarId}/intro-video/upload`,
     formData,
     {
-      headers: {
-        ...getAuthHeaders(),
-        "Content-Type": "multipart/form-data",
-      },
+      headers: getAuthHeaders(),
       timeout: 600000,
     }
   );
